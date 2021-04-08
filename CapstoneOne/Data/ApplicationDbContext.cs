@@ -22,6 +22,12 @@ namespace CapstoneOne.Data
             {
                 Name = "Admin",
                 NormalizedName = "ADMIN"
+
+            },
+            new IdentityRole
+            {
+                Name = "Customer",
+                NormalizedName = "CUSTOMER"
             }
             );
         }

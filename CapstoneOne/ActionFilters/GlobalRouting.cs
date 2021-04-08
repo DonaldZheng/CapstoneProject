@@ -23,12 +23,12 @@ namespace CapstoneOne.ActionFilters
                 if (_claimsPrincipal.IsInRole("Customer"))
                 {
                     context.Result = new RedirectToActionResult("Index",
-                    "Customers", null);
+                    "Customer", null);
                 }
                 else if (_claimsPrincipal.IsInRole("Admin"))
                 {
                     context.Result = new RedirectToActionResult("Index",
-                    "Admins", null);
+                    "Admin", null);
                 }
             }
         }

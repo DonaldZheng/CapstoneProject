@@ -11,11 +11,44 @@ namespace CapstoneOne.Models
     public class Customer
     {
         [Key]
-        public int Id
+        public int CustomerId
         {
             get; set;
         }
-        public string Name
+        [Display(Name = "First Name")]
+        [Required(ErrorMessage = "First Name is a Required Input")]
+        public string FirstName
+        {
+            get; set;
+        }
+        [Display(Name = "Last Name")]
+        public string LastName
+        {
+            get; set;
+        }
+        [Display(Name = "StreetName")]
+        public string StreetName
+        {
+            get; set;
+        }
+
+        [Display(Name = "City")]
+        public string City
+        {
+            get; set;
+        }
+        [Display(Name = "State")]
+        public string State
+        {
+            get; set;
+        }
+        [Display(Name = "ZipCode")]
+        public string ZipCode
+        {
+            get; set;
+        }
+        [Display(Name = "Favorite Date Activity?")]
+        public string Date
         {
             get; set;
         }

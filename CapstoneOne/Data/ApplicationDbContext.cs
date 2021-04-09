@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using CapstoneOne.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,6 +10,14 @@ namespace CapstoneOne.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
+        public DbSet<Customer> Customers
+        {
+            get; set;
+        }
+        public DbSet<Admin> Admins
+        {
+            get; set;
+        }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

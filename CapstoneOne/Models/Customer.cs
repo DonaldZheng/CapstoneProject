@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -47,11 +48,19 @@ namespace CapstoneOne.Models
         {
             get; set;
         }
-        [Display(Name = "Favorite Date Activity?")]
-        public string Date
+       
+        [ForeignKey("Favorite Date Activity?")]
+        public int ActivityId
+        {
+            get; set; 
+        }
+
+        [NotMapped]
+        public SelectList Activities
         {
             get; set;
         }
+
         [ForeignKey("IdentityUser")]
         public string IdentityUserId
         {

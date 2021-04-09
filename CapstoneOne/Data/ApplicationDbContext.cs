@@ -10,14 +10,6 @@ namespace CapstoneOne.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
-        public DbSet<Customer> Customers
-        {
-            get; set;
-        }
-        public DbSet<Admin> Admins
-        {
-            get; set;
-        }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
@@ -39,6 +31,14 @@ namespace CapstoneOne.Data
                 NormalizedName = "CUSTOMER"
             }
             );
+        }
+        public DbSet<Customer> Customers
+        {
+            get; set;
+        }
+        public DbSet<Admin> Admins
+        {
+            get; set;
         }
     }
     }

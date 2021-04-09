@@ -20,7 +20,7 @@ namespace CapstoneOne.Controllers
             _context = context;
         }
         // GET: CustomerController
-        public IActionResult Index()
+        public ActionResult Index()
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var customer = _context.Customers.Where(c => c.IdentityUserId == userId).SingleOrDefault();
@@ -33,14 +33,14 @@ namespace CapstoneOne.Controllers
         }
 
         // GET: CustomerController/Details/5
-        public IActionResult Details(int id)
+        public ActionResult Details(int id)
         {
             var customer = _context.Customers.Find(id);
             return View(customer);
         }
 
         // GET: CustomerController/Create
-        public IActionResult Create()
+        public ActionResult Create()
         {
             return View();
         }
@@ -48,7 +48,7 @@ namespace CapstoneOne.Controllers
         // POST: CustomerController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Customer customer)
+        public ActionResult Create(Customer customer)
         {
             try
             {
@@ -66,7 +66,7 @@ namespace CapstoneOne.Controllers
         }
 
         // GET: CustomerController/Edit/5
-        public IActionResult Edit(int id)
+        public ActionResult Edit(int id)
         {
             var editCustomer = _context.Customers.Find(id);
             return View(editCustomer);
@@ -94,7 +94,7 @@ namespace CapstoneOne.Controllers
 
 
         // GET: CustomerController/Delete/5
-        public IActionResult Delete(int id)
+        public ActionResult Delete(int id)
         {
             var deleteCustomer = _context.Customers.Find(id);
             return View(deleteCustomer);

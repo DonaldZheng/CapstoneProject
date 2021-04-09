@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CapstoneOne.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210409162045_Initial")]
+    [Migration("20210409194734_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -43,18 +43,37 @@ namespace CapstoneOne.Migrations
 
             modelBuilder.Entity("CapstoneOne.Models.Customer", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CustomerId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("ActivityId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("IdentityUserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StreetName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ZipCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CustomerId");
 
                     b.HasIndex("IdentityUserId");
 
@@ -90,15 +109,15 @@ namespace CapstoneOne.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "4d3d2d28-ddef-4ebb-aa0c-092854772eab",
-                            ConcurrencyStamp = "bd788fd9-4757-43d1-b805-d551d181aded",
+                            Id = "0619b2ad-17e0-4fde-aa95-ef844a201989",
+                            ConcurrencyStamp = "aeb2af4a-ed58-4e27-97c1-81a6277524d2",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "a40230bc-3be2-46eb-a1ba-428f71e051c3",
-                            ConcurrencyStamp = "ef84136c-cd57-4703-85a2-24444d9f881a",
+                            Id = "c6dbb239-9871-456f-84bf-6804768a2e0e",
+                            ConcurrencyStamp = "2c51ff97-675e-4fc7-98a9-259e83b9b171",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });

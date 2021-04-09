@@ -176,14 +176,20 @@ namespace CapstoneOne.Migrations
                 name: "Customers",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    CustomerId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true),
+                    FirstName = table.Column<string>(nullable: false),
+                    LastName = table.Column<string>(nullable: true),
+                    StreetName = table.Column<string>(nullable: true),
+                    City = table.Column<string>(nullable: true),
+                    State = table.Column<string>(nullable: true),
+                    ZipCode = table.Column<string>(nullable: true),
+                    ActivityId = table.Column<int>(nullable: false),
                     IdentityUserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Customers", x => x.Id);
+                    table.PrimaryKey("PK_Customers", x => x.CustomerId);
                     table.ForeignKey(
                         name: "FK_Customers_AspNetUsers_IdentityUserId",
                         column: x => x.IdentityUserId,
@@ -195,12 +201,12 @@ namespace CapstoneOne.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "4d3d2d28-ddef-4ebb-aa0c-092854772eab", "bd788fd9-4757-43d1-b805-d551d181aded", "Admin", "ADMIN" });
+                values: new object[] { "0619b2ad-17e0-4fde-aa95-ef844a201989", "aeb2af4a-ed58-4e27-97c1-81a6277524d2", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "a40230bc-3be2-46eb-a1ba-428f71e051c3", "ef84136c-cd57-4703-85a2-24444d9f881a", "Customer", "CUSTOMER" });
+                values: new object[] { "c6dbb239-9871-456f-84bf-6804768a2e0e", "2c51ff97-675e-4fc7-98a9-259e83b9b171", "Customer", "CUSTOMER" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Admins_IdentityUserId",

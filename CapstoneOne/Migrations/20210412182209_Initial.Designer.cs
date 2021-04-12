@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CapstoneOne.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210412163906_Initial3")]
-    partial class Initial3
+    [Migration("20210412182209_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,7 +23,7 @@ namespace CapstoneOne.Migrations
 
             modelBuilder.Entity("CapstoneOne.Models.Admin", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("AdminId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -34,7 +34,7 @@ namespace CapstoneOne.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("AdminId");
 
                     b.HasIndex("IdentityUserId");
 
@@ -170,15 +170,15 @@ namespace CapstoneOne.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "4374cd3a-cb6f-40a9-a71d-46e03cb43dc6",
-                            ConcurrencyStamp = "decedb3f-76e9-4ecd-ac6a-8f74556d6862",
+                            Id = "2984bc23-7f5c-4a78-b317-d4cdf6f80163",
+                            ConcurrencyStamp = "b43a076b-b955-4c50-9c3a-5b1bbebbfd18",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "e63ca094-9838-4ab3-89c7-7ac6e4405a67",
-                            ConcurrencyStamp = "a901cc59-cfb5-48f0-ad95-8f9871d0ad86",
+                            Id = "c58eae29-cec1-48df-91f7-6a06f1341c3d",
+                            ConcurrencyStamp = "fc264ff7-661b-434c-8a34-70288d61e978",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });

@@ -47,6 +47,22 @@ namespace CapstoneOne.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Products",
+                columns: table => new
+                {
+                    ProductId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    Price = table.Column<double>(nullable: false),
+                    IdentityUserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Products", x => x.ProductId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -71,14 +87,14 @@ namespace CapstoneOne.Migrations
                 name: "Admins",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    AdminId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
                     IdentityUserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Admins", x => x.Id);
+                    table.PrimaryKey("PK_Admins", x => x.AdminId);
                     table.ForeignKey(
                         name: "FK_Admins_AspNetUsers_IdentityUserId",
                         column: x => x.IdentityUserId,
@@ -201,12 +217,23 @@ namespace CapstoneOne.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "0619b2ad-17e0-4fde-aa95-ef844a201989", "aeb2af4a-ed58-4e27-97c1-81a6277524d2", "Admin", "ADMIN" });
+                values: new object[,]
+                {
+                    { "2984bc23-7f5c-4a78-b317-d4cdf6f80163", "b43a076b-b955-4c50-9c3a-5b1bbebbfd18", "Admin", "ADMIN" },
+                    { "c58eae29-cec1-48df-91f7-6a06f1341c3d", "fc264ff7-661b-434c-8a34-70288d61e978", "Customer", "CUSTOMER" }
+                });
 
             migrationBuilder.InsertData(
-                table: "AspNetRoles",
-                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "c6dbb239-9871-456f-84bf-6804768a2e0e", "2c51ff97-675e-4fc7-98a9-259e83b9b171", "Customer", "CUSTOMER" });
+                table: "Products",
+                columns: new[] { "ProductId", "Description", "IdentityUserId", "Name", "Price" },
+                values: new object[,]
+                {
+                    { 1, "Let Us Do All The Planning For Your Date!", null, "Planner Package", 35.0 },
+                    { 2, "Text/Email/Location Reminders", null, "Reminder Package", 25.0 },
+                    { 3, "Too Lazy? We'll Pick You Up!", null, "Transport Package", 500.0 },
+                    { 4, "Includes: Vacations, Hotels, Flights", null, "Deluxe Package", 1000.0 },
+                    { 5, "Customize Your Own Package!", null, "Custom Package", 200.0 }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Admins_IdentityUserId",
@@ -280,6 +307,9 @@ namespace CapstoneOne.Migrations
 
             migrationBuilder.DropTable(
                 name: "Customers");
+
+            migrationBuilder.DropTable(
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

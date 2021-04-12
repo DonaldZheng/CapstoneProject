@@ -168,25 +168,15 @@ namespace CapstoneOne.Migrations
                     b.HasData(
                         new
                         {
-
-//                            Id = "4374cd3a-cb6f-40a9-a71d-46e03cb43dc6",
-//                            ConcurrencyStamp = "decedb3f-76e9-4ecd-ac6a-8f74556d6862",
-
-                            Id = "4726af2a-3487-46b3-9bd4-62395e6ad336",
-                            ConcurrencyStamp = "b13c9499-971b-48fc-9a76-92f1c15a71c8",
-
+                            Id = "2984bc23-7f5c-4a78-b317-d4cdf6f80163",
+                            ConcurrencyStamp = "b43a076b-b955-4c50-9c3a-5b1bbebbfd18",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-
-                            //Id = "e63ca094-9838-4ab3-89c7-7ac6e4405a67",
-                            //ConcurrencyStamp = "a901cc59-cfb5-48f0-ad95-8f9871d0ad86",
-
-                            Id = "f9881072-845e-4ea9-bb52-8439474d8d18",
-                            ConcurrencyStamp = "e8e3a544-dd4c-43ee-a295-720efbc99611",
-
+                            Id = "c58eae29-cec1-48df-91f7-6a06f1341c3d",
+                            ConcurrencyStamp = "fc264ff7-661b-434c-8a34-70288d61e978",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });

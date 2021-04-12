@@ -219,9 +219,13 @@ namespace CapstoneOne.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-
+<<<<<<< HEAD:CapstoneOne/Migrations/20210412182209_Initial.cs
+                    { "2984bc23-7f5c-4a78-b317-d4cdf6f80163", "b43a076b-b955-4c50-9c3a-5b1bbebbfd18", "Admin", "ADMIN" },
+                    { "c58eae29-cec1-48df-91f7-6a06f1341c3d", "fc264ff7-661b-434c-8a34-70288d61e978", "Customer", "CUSTOMER" }
+=======
                     { "c89c2b1a-1ced-4496-9297-6586488a5aa9", "c94edec3-c136-4227-ae5a-235d26f5d8e6", "Admin", "ADMIN" },
                     { "4f4efb36-63f5-4099-b8a3-198c25a14b8e", "7301bbcc-1823-4485-aa0a-2d437ca86768", "Customer", "CUSTOMER" }
+>>>>>>> b648c1aefe3f774d7337dabbf995150077407835:CapstoneOne/Migrations/20210412182027_merged.cs
                 });
 
             migrationBuilder.InsertData(

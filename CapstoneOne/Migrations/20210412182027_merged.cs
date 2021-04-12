@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CapstoneOne.Migrations
 {
-    public partial class Initial : Migration
+    public partial class merged : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -47,6 +47,22 @@ namespace CapstoneOne.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Products",
+                columns: table => new
+                {
+                    ProductId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    Price = table.Column<double>(nullable: false),
+                    IdentityUserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Products", x => x.ProductId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -71,14 +87,14 @@ namespace CapstoneOne.Migrations
                 name: "Admins",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    AdminId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
                     IdentityUserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Admins", x => x.Id);
+                    table.PrimaryKey("PK_Admins", x => x.AdminId);
                     table.ForeignKey(
                         name: "FK_Admins_AspNetUsers_IdentityUserId",
                         column: x => x.IdentityUserId,
@@ -201,12 +217,23 @@ namespace CapstoneOne.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "0619b2ad-17e0-4fde-aa95-ef844a201989", "aeb2af4a-ed58-4e27-97c1-81a6277524d2", "Admin", "ADMIN" });
+                values: new object[,]
+                {
+                    { "c89c2b1a-1ced-4496-9297-6586488a5aa9", "c94edec3-c136-4227-ae5a-235d26f5d8e6", "Admin", "ADMIN" },
+                    { "4f4efb36-63f5-4099-b8a3-198c25a14b8e", "7301bbcc-1823-4485-aa0a-2d437ca86768", "Customer", "CUSTOMER" }
+                });
 
             migrationBuilder.InsertData(
-                table: "AspNetRoles",
-                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "c6dbb239-9871-456f-84bf-6804768a2e0e", "2c51ff97-675e-4fc7-98a9-259e83b9b171", "Customer", "CUSTOMER" });
+                table: "Products",
+                columns: new[] { "ProductId", "Description", "IdentityUserId", "Name", "Price" },
+                values: new object[,]
+                {
+                    { 1, "Let Us Do All The Planning For Your Date!", null, "Planner Package", 35.0 },
+                    { 2, "Text/Email/Location Reminders", null, "Reminder Package", 25.0 },
+                    { 3, "Too Lazy? We'll Pick You Up!", null, "Transport Package", 500.0 },
+                    { 4, "Includes: Vacations, Hotels, Flights", null, "Deluxe Package", 1000.0 },
+                    { 5, "Customize Your Own Package!", null, "Custom Package", 200.0 }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Admins_IdentityUserId",
@@ -280,6 +307,9 @@ namespace CapstoneOne.Migrations
 
             migrationBuilder.DropTable(
                 name: "Customers");
+
+            migrationBuilder.DropTable(
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -31,5 +32,10 @@ namespace CapstoneOne.Models
         {
             get; set;
         }
+        public IdentityUser IdentityUser { get; set; }
+
+  
     }
+
+    
 }

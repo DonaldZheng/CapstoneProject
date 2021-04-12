@@ -56,6 +56,10 @@ namespace CapstoneOne.Data
         {
             get; set;
         }
+        public DbSet<CustomerProduct> CustomerProducts
+        {
+            get; set;
+        }
     }
     }
 

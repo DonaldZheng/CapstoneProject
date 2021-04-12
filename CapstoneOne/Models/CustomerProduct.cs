@@ -7,18 +7,19 @@ using System.Threading.Tasks;
 
 namespace CapstoneOne.Models
 {
-    public class CustomerProduct
+    public class CustomerProduct //the actual shopping cart
     {
         [Key]
         public int Id { get; set; }
 
         [ForeignKey("Customer")]
-        public string CustomerId { get; set; }
+        public int CustomerId { get; set; }
         public Customer Customer { get; set; }
 
         [ForeignKey("Product")]
-        public string ProductId { get; set; }
+        public int ProductId { get; set; }
         public Product Product { get; set; }
 
+        // find me a customer then find the records that match the customer id that come back with list with customer product, PM for products (use include statment somewhere)
     }
 }

@@ -3,6 +3,7 @@ using CapstoneOne.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -87,6 +88,7 @@ namespace CapstoneOne.Controllers
             }
             catch
             {
+                Console.WriteLine("Error");
                 return View();
             }
         }
@@ -114,8 +116,25 @@ namespace CapstoneOne.Controllers
             }
             catch
             {
+                Console.WriteLine("Error");
                 return View();
             }
+        }
+        public IActionResult AddToCart(int id, Product product)
+        {
+            try
+            {
+                _context.CustomerProducts.Include(p => product).Where(cp => cp.CustomerId == id);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            catch 
+            {
+                Console.WriteLine("Error");
+                return View();
+            }
+          
+            
         }
     }
 }

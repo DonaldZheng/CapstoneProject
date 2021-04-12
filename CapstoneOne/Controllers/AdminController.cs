@@ -1,9 +1,11 @@
 ﻿using CapstoneOne.Data;
+using CapstoneOne.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace CapstoneOne.Controllers
@@ -15,18 +17,28 @@ namespace CapstoneOne.Controllers
         public AdminController(ApplicationDbContext context)
         {
             _context = context;
-        }
+		}
 
-        // GET: AdminController
-        public ActionResult Index()
+		// GET: AdminController
+		public IActionResult Index()
         {
-            return View();
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var admins = _context.Admins.Where(c => c.IdentityUserId == userId).ToList();
+            if (admins.Count == 0)
+            {
+                return RedirectToAction(nameof(Create));
+            }
+
+            return View(admins);
         }
+    
 
         // GET: AdminController/Details/5
-        public ActionResult Details(int id)
+        public IActionResult Details(int id)
         {
-            return View();
+            var Admin = _context.Admins.Where(e => e.AdminId == id).FirstOrDefault();
+
+            return View(Admin);
         }
 
         // GET: AdminController/Create
@@ -38,33 +50,44 @@ namespace CapstoneOne.Controllers
         // POST: AdminController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public IActionResult Create(Admin admin )
         {
             try
             {
-                return RedirectToAction(nameof(Index));
-            }
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            admin.IdentityUserId = userId;
+            _context.Admins.Add(admin);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
             catch
             {
-                return View();
+            Console.WriteLine("Error");
+            return View();
             }
         }
 
         // GET: AdminController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var admin = _context.Customers.Where(e => e.CustomerId == id).FirstOrDefault();
+            return View(admin);
+        
         }
 
         // POST: AdminController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Admin admin)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
-            }
+                 var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                admin.IdentityUserId = userId;
+                 _context.Admins.Update(admin);
+                 _context.SaveChanges();
+                    return RedirectToAction(nameof(Index));
+        }
             catch
             {
                 return View();
@@ -72,18 +95,23 @@ namespace CapstoneOne.Controllers
         }
 
         // GET: AdminController/Delete/5
-        public ActionResult Delete(int id)
+        public IActionResult Delete(int id)
         {
-            return View();
+            var deleteAdmin = _context.Admins.Where(r => r.AdminId == id).FirstOrDefault();
+            return View(deleteAdmin);
         }
 
         // POST: AdminController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public IActionResult Delete(int id, Admin admin)
         {
             try
             {
+                var adminId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                admin.IdentityUserId = adminId;
+                _context.Admins.Remove(admin);
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch

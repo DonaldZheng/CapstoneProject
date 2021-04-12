@@ -11,7 +11,7 @@ namespace CapstoneOne.Models
     public class Admin
     {
         [Key]
-        public int Id
+        public int AdminId
         {
             get; set;
         }

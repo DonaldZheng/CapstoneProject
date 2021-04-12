@@ -21,14 +21,18 @@ namespace CapstoneOne.Data
             .HasData(
             new IdentityRole
             {
+                Id = "c89c2b1a-1ced-4496-9297-6586488a5aa9",
                 Name = "Admin",
-                NormalizedName = "ADMIN"
+                NormalizedName = "ADMIN",
+                ConcurrencyStamp = "c94edec3-c136-4227-ae5a-235d26f5d8e6"
 
             },
             new IdentityRole
             {
+                Id= "4f4efb36-63f5-4099-b8a3-198c25a14b8e",
                 Name = "Customer",
-                NormalizedName = "CUSTOMER"
+                NormalizedName = "CUSTOMER",
+                ConcurrencyStamp = "7301bbcc-1823-4485-aa0a-2d437ca86768"
             }
             );
             builder.Entity<Product>()

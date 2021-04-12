@@ -4,14 +4,16 @@ using CapstoneOne.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CapstoneOne.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210412153119_Initial2")]
+    partial class Initial2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -100,43 +102,6 @@ namespace CapstoneOne.Migrations
                     b.HasKey("ProductId");
 
                     b.ToTable("Products");
-
-                    b.HasData(
-                        new
-                        {
-                            ProductId = 1,
-                            Description = "Let Us Do All The Planning For Your Date!",
-                            Name = "Planner Package",
-                            Price = 35.0
-                        },
-                        new
-                        {
-                            ProductId = 2,
-                            Description = "Text/Email/Location Reminders",
-                            Name = "Reminder Package",
-                            Price = 25.0
-                        },
-                        new
-                        {
-                            ProductId = 3,
-                            Description = "Too Lazy? We'll Pick You Up!",
-                            Name = "Transport Package",
-                            Price = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 4,
-                            Description = "Includes: Vacations, Hotels, Flights",
-                            Name = "Deluxe Package",
-                            Price = 1000.0
-                        },
-                        new
-                        {
-                            ProductId = 5,
-                            Description = "Customize Your Own Package!",
-                            Name = "Custom Package",
-                            Price = 200.0
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -168,15 +133,15 @@ namespace CapstoneOne.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "4374cd3a-cb6f-40a9-a71d-46e03cb43dc6",
-                            ConcurrencyStamp = "decedb3f-76e9-4ecd-ac6a-8f74556d6862",
+                            Id = "960e51f4-5bb8-4a94-a3a6-821c985bdeca",
+                            ConcurrencyStamp = "ff94411b-17ca-46fc-90dc-7b6ab8910de8",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "e63ca094-9838-4ab3-89c7-7ac6e4405a67",
-                            ConcurrencyStamp = "a901cc59-cfb5-48f0-ad95-8f9871d0ad86",
+                            Id = "8c35424c-2fa4-4dae-9f09-d2e09d78ba07",
+                            ConcurrencyStamp = "4f4adb04-784d-4ee7-b9dd-14f5963c1770",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });

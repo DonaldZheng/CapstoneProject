@@ -66,6 +66,18 @@ namespace CapstoneOne.Models
         {
             get; set;
         }
+        [Display(Name = "Longitude")]
+        public double Longitude
+        {
+            get; set;
+        }
+        [Display(Name = "Latitude")]
+        public double Latitude
+        {
+            get; set;
+        }
+
+
 
         [NotMapped]
         public SelectList Activities

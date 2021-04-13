@@ -1,5 +1,6 @@
 using CapstoneOne.ActionFilters;
 using CapstoneOne.Data;
+using CapstoneOne.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -45,6 +46,10 @@ namespace CapstoneOne
             {
                 config.Filters.Add(typeof(GlobalRouting));
             });
+
+            //brett's comment for geocoding?
+            services.AddTransient<GeocodingService>();
+
             services.AddControllersWithViews();
             services.AddRazorPages();
         }

@@ -1,5 +1,6 @@
 ﻿using CapstoneOne.Data;
 using CapstoneOne.Models;
+using CapstoneOne.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,9 +17,11 @@ namespace CapstoneOne.Controllers
     public class CustomerController : Controller
     {
         private ApplicationDbContext _context;
-        public CustomerController(ApplicationDbContext context)
+        private GeocodingService _geocoding;
+        public CustomerController(ApplicationDbContext context, GeocodingService geocoding)
         {
             _context = context;
+            _geocoding = geocoding;
         }
         // GET: CustomerController
         public IActionResult Index()

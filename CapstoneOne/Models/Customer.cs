@@ -48,7 +48,12 @@ namespace CapstoneOne.Models
         {
             get; set;
         }
-       
+        [Display(Name = "Pick a Date ")]
+        public DateTime Scheduler
+        {
+            get; set;
+        }
+
         [ForeignKey("Favorite Date Activity?")]
         public int ActivityId
         {

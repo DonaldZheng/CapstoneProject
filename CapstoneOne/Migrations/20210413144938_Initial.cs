@@ -184,6 +184,7 @@ namespace CapstoneOne.Migrations
                     City = table.Column<string>(nullable: true),
                     State = table.Column<string>(nullable: true),
                     ZipCode = table.Column<string>(nullable: true),
+                    Scheduler = table.Column<DateTime>(nullable: false),
                     ActivityId = table.Column<int>(nullable: false),
                     IdentityUserId = table.Column<string>(nullable: true)
                 },

@@ -54,10 +54,17 @@ namespace CapstoneOne.Models
             get; set;
         }
 
+        [Display(Name = "Favorite Date Activity")]
         [ForeignKey("Favorite Date Activity?")]
-        public int ActivityId
+        public string Activity
         {
             get; set; 
+        }
+
+        [Display(Name = "Comments: Allergies/Likes/Dislikes")]
+        public string Comment
+        {
+            get; set;
         }
 
         [NotMapped]

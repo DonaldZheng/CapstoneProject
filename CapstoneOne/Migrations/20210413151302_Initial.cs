@@ -185,7 +185,8 @@ namespace CapstoneOne.Migrations
                     State = table.Column<string>(nullable: true),
                     ZipCode = table.Column<string>(nullable: true),
                     Scheduler = table.Column<DateTime>(nullable: false),
-                    ActivityId = table.Column<int>(nullable: false),
+                    Activity = table.Column<string>(nullable: true),
+                    Comment = table.Column<string>(nullable: true),
                     IdentityUserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>

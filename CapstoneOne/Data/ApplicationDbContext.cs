@@ -60,6 +60,7 @@ namespace CapstoneOne.Data
         {
             get; set;
         }
+        public DbSet<CapstoneOne.Models.Payment> Payment { get; set; }
     }
     }
 

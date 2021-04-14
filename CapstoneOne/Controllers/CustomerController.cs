@@ -26,6 +26,8 @@ namespace CapstoneOne.Controllers
         // GET: CustomerController
         public IActionResult Index()
         {
+            ViewData["APIkeys"] = APIkeys.GoogleAPIKey;
+
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var customer = _context.Customers.Where(c => c.IdentityUserId == userId).ToList();
             if (customer.Count == 0)
@@ -39,6 +41,8 @@ namespace CapstoneOne.Controllers
         // GET: CustomerController/Details/5
         public IActionResult Details(int id)
         {
+            ViewData["APIkeys"] = APIkeys.GoogleAPIKey;
+
             var customer = _context.Customers.Where(e => e.CustomerId == id).FirstOrDefault();
             return View(customer);
         }
@@ -52,12 +56,16 @@ namespace CapstoneOne.Controllers
         // POST: CustomerController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Customer customer)
+        public async Task<IActionResult> Create(Customer customer)
         {
             try
             {
                 var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
                 customer.IdentityUserId = userId;
+                // google geocoding the API CALL
+
+                var custromerwithLatLng = await _geocoding.GetGeoCoding(customer);
+
                 _context.Customers.Add(customer);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
@@ -72,6 +80,8 @@ namespace CapstoneOne.Controllers
         // GET: CustomerController/Edit/5
         public ActionResult Edit(int id)
         {
+            ViewData["APIkeys"] = APIkeys.GoogleAPIKey;
+
             var customer = _context.Customers.Where(e => e.CustomerId == id).FirstOrDefault();
             return View(customer);
         }
@@ -79,10 +89,12 @@ namespace CapstoneOne.Controllers
         // POST: CustomerController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, Models.Customer customer)
+        public async Task<IActionResult> Edit(int id, Models.Customer customer)
         {
             try
             {
+                var custromerwithLatLng = await _geocoding.GetGeoCoding(customer);
+
                 var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
                 customer.IdentityUserId = userId;
                 _context.Customers.Update(customer);

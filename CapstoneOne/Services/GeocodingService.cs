@@ -14,7 +14,7 @@ namespace CapstoneOne.Services
         private string GetGeoCodingURL(Customer customer)
         {
             return $"https://maps.googleapis.com/maps/api/geocode/json?address={customer.StreetName}+{customer.City}+{customer.State}+&key="
-                + Apikeys.GoogleApiKey;
+                + APIkeys.GoogleAPIKey;
         }
 
         public async Task<Customer> GetGeoCoding(Customer customer)

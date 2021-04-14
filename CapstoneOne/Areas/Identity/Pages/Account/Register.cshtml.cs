@@ -81,6 +81,8 @@ namespace CapstoneOne.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             var roles = _roleManager.Roles;
             Roles = new SelectList(roles, "Name", "Name");
+
+            var list = new SelectList(new List<string>() { "test", "test" });
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)

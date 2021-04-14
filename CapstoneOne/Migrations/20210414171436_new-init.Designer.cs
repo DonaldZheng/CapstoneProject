@@ -10,8 +10,13 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CapstoneOne.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
+<<<<<<< HEAD:CapstoneOne/Migrations/20210414171436_new-init.Designer.cs
     [Migration("20210414171436_new-init")]
     partial class newinit
+=======
+    [Migration("20210414150236_Initial")]
+    partial class Initial
+>>>>>>> b5d6d01d254a704c96b32104691c3338ae0adbaf:CapstoneOne/Migrations/20210414150236_Initial.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

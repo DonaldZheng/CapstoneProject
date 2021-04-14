@@ -19,20 +19,21 @@ namespace CapstoneOne.Controllers
 		}
 
 		// GET: CustomerProductController
-		public ActionResult Index()
+		public IActionResult Index()
 		{
 			var cart = _context.CustomerProducts.Include(c => c.Product).ToList();
 			return View(cart);
 		}
 
 		// GET: CustomerProductController/Details/5
-		public ActionResult Details(int id)
+		public IActionResult Details(int id)
 		{
-			return View();
+			var cart = _context.CustomerProducts.Where(e => e.ProductId == id).ToList();
+			return View(cart);
 		}
 
 		// GET: CustomerProductController/Create
-		public ActionResult Create()
+		public IActionResult Create()
 		{
 			return View();
 		}
@@ -40,7 +41,7 @@ namespace CapstoneOne.Controllers
 		// POST: CustomerProductController/Create
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Create(IFormCollection collection)
+		public IActionResult Create(IFormCollection collection)
 		{
 			try
 			{
@@ -53,7 +54,7 @@ namespace CapstoneOne.Controllers
 		}
 
 		// GET: CustomerProductController/Edit/5
-		public ActionResult Edit(int id)
+		public IActionResult Edit(int id)
 		{
 			return View();
 		}
@@ -61,7 +62,7 @@ namespace CapstoneOne.Controllers
 		// POST: CustomerProductController/Edit/5
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Edit(int id, IFormCollection collection)
+		public IActionResult Edit(int id, IFormCollection collection)
 		{
 			try
 			{
@@ -74,7 +75,7 @@ namespace CapstoneOne.Controllers
 		}
 
 		// GET: CustomerProductController/Delete/5
-		public ActionResult Delete(int id)
+		public IActionResult Delete(int id)
 		{
 			return View();
 		}
@@ -82,7 +83,7 @@ namespace CapstoneOne.Controllers
 		// POST: CustomerProductController/Delete/5
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Delete(int id, IFormCollection collection)
+		public IActionResult Delete(int id, IFormCollection collection)
 		{
 			try
 			{

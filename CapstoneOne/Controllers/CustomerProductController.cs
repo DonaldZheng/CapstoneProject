@@ -58,20 +58,24 @@ namespace CapstoneOne.Controllers
 		// GET: CustomerProductController/Edit/5
 		public IActionResult Edit(int id)
 		{
-			return View();
+			var cart = _context.CustomerProducts.Where(c => c.ProductId == id).FirstOrDefault();
+			return View(cart);
 		}
 
 		// POST: CustomerProductController/Edit/5
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public IActionResult Edit(int id, IFormCollection collection)
+		public IActionResult Edit(int id, CustomerProduct cart)
 		{
 			try
 			{
+				_context.CustomerProducts.Update(cart);
+				_context.SaveChanges();
 				return RedirectToAction(nameof(Index));
 			}
 			catch
 			{
+				Console.WriteLine("Error");
 				return View();
 			}
 		}

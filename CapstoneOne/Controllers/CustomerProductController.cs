@@ -2,17 +2,27 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CapstoneOne.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CapstoneOne.Controllers
 {
 	public class CustomerProductController : Controller
 	{
+		private readonly ApplicationDbContext _context;
+
+		public CustomerProductController(ApplicationDbContext context)
+		{
+			_context = context;
+		}
+
 		// GET: CustomerProductController
 		public ActionResult Index()
 		{
-			return View();
+			var cart = _context.CustomerProducts.Include(c => c.Product).ToList();
+			return View(cart);
 		}
 
 		// GET: CustomerProductController/Details/5

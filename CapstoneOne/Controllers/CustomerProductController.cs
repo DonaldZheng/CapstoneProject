@@ -77,7 +77,8 @@ namespace CapstoneOne.Controllers
 		// GET: CustomerProductController/Delete/5
 		public IActionResult Delete(int id)
 		{
-			return View();
+			var cart = _context.CustomerProducts.Where(e => e.ProductId == id).FirstOrDefault();
+			return View(cart);
 		}
 
 		// POST: CustomerProductController/Delete/5

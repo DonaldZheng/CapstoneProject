@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -150,6 +151,24 @@ namespace CapstoneOne.Controllers
             }
           
             
+        }
+        public static void EmailConfirm(Customer customer)
+        {
+            Execute(customer).Wait();
+        }
+        public static async Task Execute(Customer customer)
+        {
+            SmtpClient myCLient = new SmtpClient();
+            myCLient.Credentials = new System.Net.NetworkCredential("test.email.for.ford@gmail.com", "Fofosho1@");
+            myCLient.Port = 587;
+            myCLient.Host = "smtp.gmail.com";
+            myCLient.EnableSsl = true;
+            myCLient.DeliveryMethod = SmtpDeliveryMethod.Network;
+            myCLient.EnableSsl = true;
+            MailMessage mail = new MailMessage();
+            mail.From = new MailAddress("test.email.for.ford@gmail.com");
+            mail.To.Add(customer.UserEmail);
+            myCLient.Send(mail);
         }
     }
 }

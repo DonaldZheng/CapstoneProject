@@ -78,7 +78,10 @@ namespace CapstoneOne.Models
             get; set;
         }
 
-
+        public string UserEmail
+        {
+            get; set;
+        }
 
         [NotMapped]
         public SelectList Activities

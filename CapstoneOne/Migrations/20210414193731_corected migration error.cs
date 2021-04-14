@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CapstoneOne.Migrations
 {
-    public partial class newinit : Migration
+    public partial class corectedmigrationerror : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

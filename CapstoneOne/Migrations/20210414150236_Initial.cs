@@ -206,6 +206,7 @@ namespace CapstoneOne.Migrations
                     Comment = table.Column<string>(nullable: true),
                     Longitude = table.Column<double>(nullable: false),
                     Latitude = table.Column<double>(nullable: false),
+                    UserEmail = table.Column<string>(nullable: true),
                     IdentityUserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>

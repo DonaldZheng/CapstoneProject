@@ -1,6 +1,6 @@
 using CapstoneOne.ActionFilters;
 using CapstoneOne.Data;
-using CapstoneOne.Services;
+//using CapstoneOne.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -48,7 +48,7 @@ namespace CapstoneOne
             });
 
             //brett's comment for geocoding?
-            services.AddTransient<GeocodingService>();
+            //services.AddTransient<GeocodingService>();
 
             services.AddControllersWithViews();
             services.AddRazorPages();

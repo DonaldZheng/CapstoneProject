@@ -56,7 +56,6 @@ namespace CapstoneOne.Models
         }
 
         [Display(Name = "Favorite Date Activity")]
-        [ForeignKey("Favorite Date Activity?")]
         public string Activity
         {
             get; set; 

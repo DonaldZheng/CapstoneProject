@@ -86,6 +86,9 @@ namespace CapstoneOne.Migrations
                     b.Property<string>("StreetName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserEmail")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ZipCode")
                         .HasColumnType("nvarchar(max)");
 

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using CapstoneOne.Data;
+using CapstoneOne.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -84,14 +86,19 @@ namespace CapstoneOne.Controllers
 		// POST: CustomerProductController/Delete/5
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public IActionResult Delete(int id, IFormCollection collection)
+		public IActionResult Delete(int id, CustomerProduct cart)
 		{
 			try
 			{
+				//var  = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+				//cart.ProductId = ;
+				//_context.Customers.Remove(cart);
+				//_context.SaveChanges();
 				return RedirectToAction(nameof(Index));
 			}
 			catch
 			{
+				Console.WriteLine("Error");
 				return View();
 			}
 		}

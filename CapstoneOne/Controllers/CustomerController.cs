@@ -1,6 +1,6 @@
 ﻿using CapstoneOne.Data;
 using CapstoneOne.Models;
-using CapstoneOne.Services;
+//using CapstoneOne.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -18,16 +18,16 @@ namespace CapstoneOne.Controllers
     public class CustomerController : Controller
     {
         private ApplicationDbContext _context;
-        private GeocodingService _geocoding;
-        public CustomerController(ApplicationDbContext context, GeocodingService geocoding)
+        //private GeocodingService _geocoding;
+        public CustomerController(ApplicationDbContext context)
         {
             _context = context;
-            _geocoding = geocoding;
+            
         }
         // GET: CustomerController
         public IActionResult Index()
         {
-            ViewData["APIkeys"] = APIkeys.GoogleAPIKey;
+            //ViewData["APIkeys"] = APIkeys.GoogleAPIKey;
 
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var customer = _context.Customers.Where(c => c.IdentityUserId == userId).ToList();
@@ -42,7 +42,7 @@ namespace CapstoneOne.Controllers
         // GET: CustomerController/Details/5
         public IActionResult Details(int id)
         {
-            ViewData["APIkeys"] = APIkeys.GoogleAPIKey;
+            //ViewData["APIkeys"] = APIkeys.GoogleAPIKey;
 
             var customer = _context.Customers.Where(e => e.CustomerId == id).FirstOrDefault();
             return View(customer);
@@ -57,23 +57,23 @@ namespace CapstoneOne.Controllers
         // POST: CustomerController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Customer customer)
+        public IActionResult Create([Bind("CustomerId,FirstName,LastName,StreetName,City,State,ZipCode,Scheduler,Activity,Comment,Longtiude,Latitude,UserEmail")]Customer customer)
         {
             try
             {
-                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 customer.IdentityUserId = userId;
                 // google geocoding the API CALL
 
-                var custromerwithLatLng = await _geocoding.GetGeoCoding(customer);
+                //var custromerwithLatLng = await _geocoding.GetGeoCoding(customer);
 
                 _context.Customers.Add(customer);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception e)
             {
-                Console.WriteLine("Error");
+                Console.WriteLine(e);
                 return View();
             }
         }
@@ -81,7 +81,7 @@ namespace CapstoneOne.Controllers
         // GET: CustomerController/Edit/5
         public ActionResult Edit(int id)
         {
-            ViewData["APIkeys"] = APIkeys.GoogleAPIKey;
+            //ViewData["APIkeys"] = APIkeys.GoogleAPIKey;
 
             var customer = _context.Customers.Where(e => e.CustomerId == id).FirstOrDefault();
             return View(customer);
@@ -94,7 +94,7 @@ namespace CapstoneOne.Controllers
         {
             try
             {
-                var custromerwithLatLng = await _geocoding.GetGeoCoding(customer);
+                //var custromerwithLatLng = await _geocoding.GetGeoCoding(customer);
 
                 var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
                 customer.IdentityUserId = userId;
@@ -144,13 +144,13 @@ namespace CapstoneOne.Controllers
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            catch 
+            catch
             {
                 Console.WriteLine("Error");
                 return View();
             }
-          
-            
+
+
         }
         public static void EmailConfirm(Customer customer)
         {

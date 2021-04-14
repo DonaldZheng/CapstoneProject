@@ -13,9 +13,12 @@ namespace CapstoneOne.Models
         {
             get; set;
         }
+        //foreign key  point to customer
         public string ActivityName
         {
             get; set;
         }
+
+        //date
     }
 }

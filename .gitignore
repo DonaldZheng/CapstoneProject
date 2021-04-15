@@ -350,3 +350,6 @@ MigrationBackup/
 .ionide/
 
 Apikeys.cs
+
+/CapstoneOne/Migrations
+

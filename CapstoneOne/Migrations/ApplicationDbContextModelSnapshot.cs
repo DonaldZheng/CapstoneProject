@@ -55,10 +55,16 @@ namespace CapstoneOne.Migrations
                     b.Property<string>("Activity")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Allergies")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("Anniversary")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Comment")
+                    b.Property<string>("FavoritePlaces")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
@@ -77,7 +83,7 @@ namespace CapstoneOne.Migrations
                     b.Property<double>("Longitude")
                         .HasColumnType("float");
 
-                    b.Property<DateTime>("Scheduler")
+                    b.Property<DateTime?>("Scheduler")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("State")

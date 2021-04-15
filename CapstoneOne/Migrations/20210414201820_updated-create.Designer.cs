@@ -10,13 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CapstoneOne.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-<<<<<<< HEAD:CapstoneOne/Migrations/20210414171436_new-init.Designer.cs
-    [Migration("20210414171436_new-init")]
-    partial class newinit
-=======
-    [Migration("20210414150236_Initial")]
-    partial class Initial
->>>>>>> b5d6d01d254a704c96b32104691c3338ae0adbaf:CapstoneOne/Migrations/20210414150236_Initial.Designer.cs
+    [Migration("20210414201820_updated-create")]
+    partial class updatedcreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -62,10 +57,16 @@ namespace CapstoneOne.Migrations
                     b.Property<string>("Activity")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Allergies")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("Anniversary")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Comment")
+                    b.Property<string>("FavoritePlaces")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
@@ -84,7 +85,7 @@ namespace CapstoneOne.Migrations
                     b.Property<double>("Longitude")
                         .HasColumnType("float");
 
-                    b.Property<DateTime>("Scheduler")
+                    b.Property<DateTime?>("Scheduler")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("State")

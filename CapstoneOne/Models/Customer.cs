@@ -49,8 +49,8 @@ namespace CapstoneOne.Models
         {
             get; set;
         }
-        [Display(Name = "Pick a Date ")]
-        public DateTime Scheduler
+        [Display(Name = "Your partner's Birthday ")]
+        public DateTime? Scheduler
         {
             get; set;
         }
@@ -61,8 +61,21 @@ namespace CapstoneOne.Models
             get; set; 
         }
 
-        [Display(Name = "Comments: Allergies/Likes/Dislikes")]
-        public string Comment
+
+        [Display(Name = "Anniversary Date")]
+        public DateTime? Anniversary
+        {
+            get; set;
+        }
+
+        [Display(Name = "Favorite Places To Go")]
+        public string FavoritePlaces
+        {
+            get; set;
+        }
+
+        [Display(Name = "Any Allergies?")]
+        public string Allergies
         {
             get; set;
         }
@@ -82,18 +95,18 @@ namespace CapstoneOne.Models
             get; set;
         }
 
-        [NotMapped]
-        public SelectList Activities
-        {
-            get; set;
-        }
-
         [ForeignKey("IdentityUser")]
         public string IdentityUserId
         {
             get; set;
         }
         public IdentityUser IdentityUser
+        {
+            get; set;
+        }
+        [NotMapped]
+        [Display(Name = "Please Select A Package")]
+        public SelectList Packages
         {
             get; set;
         }

@@ -4,7 +4,9 @@ using CapstoneOne.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Stripe;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,18 +53,24 @@ namespace CapstoneOne.Controllers
         // GET: CustomerController/Create
         public IActionResult Create()
         {
-            return View();
+            Models.Customer customer = new Models.Customer();
+            var packages = _context.Products.ToList();
+            customer.Packages = new SelectList(packages,"ProductId","Name");
+            return View(customer);
         }
 
         // POST: CustomerController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("CustomerId,FirstName,LastName,StreetName,City,State,ZipCode,Scheduler,Activity,Comment,Longtiude,Latitude,UserEmail")]Customer customer)
+        public IActionResult Create([Bind("CustomerId,FirstName,LastName,StreetName,City,State,ZipCode,Scheduler,Activity,Allergies,Packages,Anniversary,FavoritePlaces,Longtiude,Latitude,UserEmail")]Models.Customer customer, int productId)
         {
+
             try
             {
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 customer.IdentityUserId = userId;
+                //product = _context.Products.Add.ToList();
+                
                 // google geocoding the API CALL
 
                 //var custromerwithLatLng = await _geocoding.GetGeoCoding(customer);
@@ -76,6 +84,10 @@ namespace CapstoneOne.Controllers
                 Console.WriteLine(e);
                 return View();
             }
+            //ViewBag.Products = new SelectList(product.Name, "Name", "Name");
+            return View();
+
+
         }
 
         // GET: CustomerController/Edit/5
@@ -120,7 +132,7 @@ namespace CapstoneOne.Controllers
         // POST: CustomerController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete(int id, Customer customer)
+        public IActionResult Delete(int id, Models.Customer customer)
         {
             try
             {
@@ -136,7 +148,7 @@ namespace CapstoneOne.Controllers
                 return View();
             }
         }
-        public IActionResult AddToCart(int id, Product product)
+        public IActionResult AddToCart(int id, Models.Product product)
         {
             try
             {
@@ -152,11 +164,11 @@ namespace CapstoneOne.Controllers
 
 
         }
-        public static void EmailConfirm(Customer customer)
+        public static void EmailConfirm(Models.Customer customer)
         {
             Execute(customer).Wait();
         }
-        public static async Task Execute(Customer customer)
+        public static async Task Execute(Models.Customer customer)
         {
             SmtpClient myCLient = new SmtpClient();
             myCLient.Credentials = new System.Net.NetworkCredential("test.email.for.ford@gmail.com", "Fofosho1@");
@@ -170,5 +182,53 @@ namespace CapstoneOne.Controllers
             mail.To.Add(customer.UserEmail);
             myCLient.Send(mail);
         }
+        //Added for Payment
+        //[Route("Pay")]
+        //public async Task<dynamic> Pay(Models.Payment payment)
+        //{
+        //    return await MakePayment.PayAsync(payment.CardNumber, payment.Month, payment.Year, payment.Cvc, payment.Value);
+        //}
+        //public static async Task<dynamic> PayAsync(string CardNumber, int Month, int Year, string Cvc, int Value)
+        //{
+        //    try
+        //    {
+        //        StripeConfiguration.ApiKey = "sk_test_51IWr81I0mwyrhuJbwUsyQcLNrQKVQ508xWWR4I1lIh8fnMUaHk61JpUaZcI31wo2uEmAAAYge4L04dVBW0b7A9BH00BvfmxoVY";
+        //        var optionstoken = new TokenCreateOptions
+        //        {
+        //            Card = new TokenCardOptions
+        //            {
+        //                Number = CardNumber,
+        //                ExpMonth = Month,
+        //                ExpYear = Year,
+        //                Cvc = Cvc
+        //            }
+        //        };
+        //        var servicetoken = new TokenService();
+        //        Token stripetoken = await servicetoken.CreateAsync(optionstoken);
+        //        var options = new ChargeCreateOptions
+        //        {
+        //            Amount = Value,
+        //            Currency = "usd",
+        //            Description = "test",
+        //            Source = stripetoken.Id
+        //        };
+        //        var service = new ChargeService();
+        //        Charge charge = await service.CreateAsync(options);
+        //        if (charge.Paid)
+        //        {
+        //            return "Success";
+        //        }
+        //        else
+        //        {
+        //            return "Failed";
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        return e.Message;
+        //    }
+        }
     }
-}
+//}
+
+

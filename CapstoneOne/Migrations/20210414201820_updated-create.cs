@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CapstoneOne.Migrations
 {
-    public partial class newinit : Migration
+    public partial class updatedcreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -201,9 +201,11 @@ namespace CapstoneOne.Migrations
                     City = table.Column<string>(nullable: true),
                     State = table.Column<string>(nullable: true),
                     ZipCode = table.Column<string>(nullable: true),
-                    Scheduler = table.Column<DateTime>(nullable: false),
+                    Scheduler = table.Column<DateTime>(nullable: true),
                     Activity = table.Column<string>(nullable: true),
-                    Comment = table.Column<string>(nullable: true),
+                    Anniversary = table.Column<DateTime>(nullable: true),
+                    FavoritePlaces = table.Column<string>(nullable: true),
+                    Allergies = table.Column<string>(nullable: true),
                     Longitude = table.Column<double>(nullable: false),
                     Latitude = table.Column<double>(nullable: false),
                     UserEmail = table.Column<string>(nullable: true),
